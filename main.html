@@ -49,22 +49,22 @@
 
     <!-- ================= NAVIGASI ================= -->
     <header class="site-nav" id="site-nav" inert>
-        <nav class="container d-flex justify-content-between align-items-center" aria-label="Navigasi utama">
-            <a class="nav-brand" href="#hero" data-scroll id="nav-brand" aria-label="Kembali ke halaman utama">
+        <nav class="container d-flex justify-content-between align-items-center">
+            <a class="nav-brand" href="#hero" data-scroll id="nav-brand">
                 <span id="nav-initial-one">N</span>
                 <span class="nav-brand-ampersand">&amp;</span>
                 <span id="nav-initial-two">N</span>
             </a>
-            <button class="btn-menu" type="button" data-bs-toggle="offcanvas" data-bs-target="#menu" aria-controls="menu">
+            <button class="btn-menu" type="button" data-bs-toggle="offcanvas" data-bs-target="#menu">
                 MENU
             </button>
         </nav>
     </header>
 
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="menu" aria-labelledby="menu-label">
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="menu">
         <div class="offcanvas-header">
             <h2 class="offcanvas-title" id="menu-label">Menu</h2>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Tutup menu"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
         </div>
         <div class="offcanvas-body">
             <ul class="menu-list">
@@ -100,7 +100,7 @@
 
                 <p class="hero-date hero-fade" data-config="wedding.dateLong">DAY, DATE MONTH YEAR</p>
                 <p class="hero-place hero-fade" data-config="venue.cityProvince">Yogyakarta, DI Yogyakarta</p>
-                <div class="hero-divider hero-fade" aria-hidden="true"></div>
+                <div class="hero-divider hero-fade"></div>
             </div>
         </section>
 
@@ -108,7 +108,7 @@
         <!-- ================= SALAM ================= -->
         <section class="section-greeting" id="salam">
             <div class="greeting-inner" data-reveal>
-                <div class="section-rule" aria-hidden="true"><span></span><i class="bi bi-flower1"></i><span></span></div>
+                <div class="section-rule"><span></span><i class="bi bi-flower1"></i><span></span></div>
                 <p class="greeting-text" data-config="invitation.greetingText">Dengan penuh syukur, kami mengundang Bapak, Ibu, dan Saudara untuk hadir dan memberikan doa restu pada hari bahagia kami.</p>
                 <p class="greeting-sign" data-config="invitation.greetingSign">Salam hangat dari kami dan keluarga</p>
             </div>
@@ -125,27 +125,59 @@
                     <div class="col-10 col-sm-8 col-md-5">
                         <article class="couple-card text-center" data-reveal>
                             <div class="arch-frame">
-                                <div class="arch-photo" data-config-photo="couple.partnerOne" role="img" aria-label="Foto mempelai pertama"></div>
+                                <div class="arch-photo" data-config-photo="couple.partnerOne" role="img"></div>
                             </div>
                             <h3 class="couple-name" data-config="couple.partnerOne.fullName">Nama Lengkap Pasangan Pertama</h3>
                             <p class="couple-parents" data-config="couple.partnerOne.parents">Putra dari Bapak dan Ibu ...</p>
-                            <div class="ikat-strip" aria-hidden="true"></div>
+                            <div class="ikat-strip"></div>
                         </article>
                     </div>
 
                     <div class="col-10 col-sm-8 col-md-5 mt-md-5">
                         <article class="couple-card couple-card--second text-center" data-reveal>
                             <div class="arch-frame">
-                                <div class="arch-photo" data-config-photo="couple.partnerTwo" role="img" aria-label="Foto mempelai kedua"></div>
+                                <div class="arch-photo" data-config-photo="couple.partnerTwo" role="img"></div>
                             </div>
                             <h3 class="couple-name" data-config="couple.partnerTwo.fullName">Nama Lengkap Pasangan Kedua</h3>
                             <p class="couple-parents" data-config="couple.partnerTwo.parents">Putri dari Bapak dan Ibu ...</p>
-                            <div class="ikat-strip" aria-hidden="true"></div>
+                            <div class="ikat-strip"></div>
                         </article>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- ================= OUR STORY ================= -->
+        <section class="section-story" id="cerita">
+            <div class="container">
+                <div class="story-layout">
+
+                    <div class="story-intro" data-reveal>
+                        <h2 class="story-title" id="story-title">
+                            <span data-config="story.titleLineOne">A little story</span>
+                            <span class="story-title-accent" data-config="story.titleLineTwo">called us.</span>
+                        </h2>
+
+                        <p class="story-description" data-config="story.description">
+                            Ada pertemuan yang terlihat sederhana, sampai waktu menunjukkan bahwa ia sedang membawa kita pulang.
+                        </p>
+
+                        <div class="story-stamp">
+                            <span class="story-stamp-label" data-config="story.stampLabel">CATATAN KECIL</span>
+                            <span class="story-stamp-symbol"><i class="bi bi-flower1"></i></span>
+                            <span class="story-stamp-years" data-config="story.yearRange">2018 — 2026</span>
+                        </div>
+
+                    </div>
+                    <div class="story-timeline" id="story-timeline">
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+
     </main>
 
 

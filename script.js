@@ -28,6 +28,37 @@ const WEDDING_CONFIG = {
         guestQueryParameter: "to"
     },
 
+    story: {
+        titleLineOne: "A little story",
+        titleLineTwo: "called us.",
+        description: "Ada pertemuan yang terlihat sederhana, sampai waktu menunjukkan bahwa ia sedang membawa kita pulang.",
+
+        stampLabel: "CATATAN KECIL",
+
+        chapters: [
+            {
+                year: 2018,
+                title: "Pertemuan Pertama",
+                description: "Di sebuah acara kampus, obrolan singkat berubah menjadi awal dari cerita yang tak pernah kami rencanakan."
+            },
+            {
+                year: 2019,
+                title: "Mulai Mengenal",
+                description: "Kami belajar mengenal hal-hal kecil, bertumbuh bersama, dan menemukan nyaman dalam kesederhanaan."
+            },
+            {
+                year: 2022,
+                title: "Satu Kesepakatan",
+                description: "Dengan restu keluarga, kami memilih untuk melangkah lebih jauh dan menjaga cerita ini bersama-sama."
+            },
+            {
+                year: 2026,
+                title: "Hari yang Dinanti",
+                description: "Sebuah bab baru dimulai. Kali ini, kami ingin merayakannya bersama orang-orang terkasih."
+            }
+        ]
+    },
+
     wedding: {
         date: "2026-12-30",
         timeZone: "Asia/Jakarta",
@@ -85,6 +116,20 @@ function getVenueFullAddress() {
 }
 
 
+function getStoryYearRange() {
+    const chapters = WEDDING_CONFIG.story?.chapters ?? [];
+    const years = chapters.map((chapter) => Number(chapter.year)).filter((year) => Number.isFinite(year));
+
+    if (years.length === 0) {
+        return "";
+    }
+
+    const firstYear = Math.min(...years);
+    const lastYear = Math.max(...years);
+
+    return `${firstYear} — ${lastYear}`;
+}
+
 function getVenueMapsUrl() {
     const address = getVenueFullAddress();
     return `https://www.google.com/maps/search/?api=1&query=${
@@ -110,7 +155,8 @@ function resolveConfigValue(path) {
         "wedding.ceremonyTimeDisplay":`${WEDDING_CONFIG.wedding.ceremonyTime} WIB`,
         "wedding.receptionTimeDisplay":`${WEDDING_CONFIG.wedding.receptionTime} WIB`,
         "venue.cityProvince": getVenueCityProvince(),
-        "venue.fullAddress": getVenueFullAddress()
+        "venue.fullAddress": getVenueFullAddress(),
+        "story.yearRange": getStoryYearRange()
     };
 
     if (Object.prototype.hasOwnProperty.call(formattedValues, path)) {
@@ -168,6 +214,52 @@ function applyPartnerPhotos() {
         }
 
         element.setAttribute("aria-label", `Foto ${partner.nickname}`);
+    });
+}
+
+
+function renderStoryTimeline() {
+    const timeline = document.getElementById("story-timeline");
+    if (!timeline) {
+        return;
+    }
+
+    const chapters = WEDDING_CONFIG.story?.chapters ?? [];
+    timeline.replaceChildren();
+
+    chapters.forEach((chapter, index) => {
+        const item = document.createElement("article");
+        item.className = "story-item";
+        item.setAttribute("data-reveal", "");
+        item.style.setProperty("--story-delay", `${index * 100}ms`);
+
+        const year = document.createElement("p");
+        year.className = "story-year";
+        year.textContent = String(chapter.year ?? "");
+
+        const marker = document.createElement("span");
+        marker.className = "story-marker";
+        marker.setAttribute("aria-hidden", "true");
+
+        const content = document.createElement("div");
+        content.className = "story-item-content";
+
+        const label = document.createElement("p");
+        label.className = "story-chapter-label";
+        label.textContent = `CHAPTER ${String(index + 1).padStart(2, "0")}`;
+
+        const title = document.createElement("h3");
+        title.className = "story-item-title";
+        title.textContent = chapter.title ?? "";
+
+        const description = document.createElement("p");
+        description.className = "story-item-description";
+        description.textContent = chapter.description ?? "";
+
+        content.append(label, title, description);
+        item.append(year, marker, content);
+
+        timeline.appendChild(item);
     });
 }
 
@@ -268,6 +360,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const scrollBehavior = reduceMotion ? "auto" : "smooth";
     applyWeddingConfig();
     applyGuestName();
+    renderStoryTimeline();
     startCountdown();
     startRevealOnScroll(reduceMotion);
 
