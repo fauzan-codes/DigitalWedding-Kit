@@ -5,11 +5,14 @@
   --sand-dark: #c7ae8c;
   --terracotta: #b85d3c;
   --terracotta-dark: #93462f;
+  --terracotta-soft: #dd8a6c;
   --olive: #56634b;
   --olive-dark: #344337;
   --charcoal: #292825;
   --muted: #787167;
   --line: rgba(63, 52, 41, .18);
+  --cocoa: #1f1b18;              
+
   --serif: "Playfair Display", Georgia, serif;
   --sans: "DM Sans", Arial, sans-serif;
   --page-gutter: clamp(1.25rem, 5vw, 5.5rem);
@@ -57,26 +60,11 @@ button, input, select, textarea {
     /* #f6f1e7 */
 }
 
-.skip-link { 
-    position: fixed; 
-    z-index: 9999; 
-    top: 8px; 
-    left: 8px; 
-    padding: .6rem 1rem; 
-    background: var(--charcoal); 
-    color: #fff; 
-    transform: translateY(-150%); 
-}
-
-.skip-link:focus { 
-    transform: translateY(0); 
-}
 
 
 
 
 
-/* Shared typography and small details */
 .eyebrow { 
     display: flex; 
     align-items: center; 
@@ -89,9 +77,7 @@ button, input, select, textarea {
     line-height: 1.5; 
 }
 
-
-
-/* ========== hiasan ========== */
+/* =============== hiasan =============== */
 .cover-bg-fade {
   position: absolute;
   top: 5%;
@@ -104,7 +90,7 @@ button, input, select, textarea {
   background-size: 90px auto;     
   background-position: center;
   
-  opacity: 0.25;                  
+  opacity: 0.16;
 
   -webkit-mask-image: radial-gradient(ellipse farthest-side at center, black 20%, rgba(0, 0, 0, 0.7) 50%, transparent 100%);
   mask-image: radial-gradient(ellipse farthest-side at center, black 20%, rgba(0, 0, 0, 0.7) 50%, transparent 100%);
@@ -116,9 +102,10 @@ button, input, select, textarea {
 .cover-ornament { 
     position: absolute; 
     width: clamp(120px, 18vw, 250px); 
-    aspect-ratio: 1; opacity: .83;
-    pointer-events: none; 
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220' fill='none' stroke='%23b85d3c' stroke-width='.8'%3E%3Cpath d='M0 0h105M0 0v105M0 0c0 43 62 43 62 0M0 0c43 0 43 62 0 62M0 22c31 0 31 43 0 43M22 0c0 31 43 31 43 0M0 0l80 80M15 0l65 65M0 15l65 65'/%3E%3Cpath d='M0 90c38-5 45-34 48-48 14 3 43 10 48 48-38 5-45 34-48 48C34 134 5 127 0 90Z'/%3E%3Cpath d='M48 48v42M48 90h42M48 48l42 42M48 48L6 90M48 48c-20 8-20 34 0 42 20-8 20-34 0-42Z'/%3E%3Ccircle cx='48' cy='90' r='5'/%3E%3C/svg%3E"); 
+    aspect-ratio: 1;
+    opacity: .6;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220' fill='none' stroke='%23dd8a6c' stroke-width='.8'%3E%3Cpath d='M0 0h105M0 0v105M0 0c0 43 62 43 62 0M0 0c43 0 43 62 0 62M0 22c31 0 31 43 0 43M22 0c0 31 43 31 43 0M0 0l80 80M15 0l65 65M0 15l65 65'/%3E%3Cpath d='M0 90c38-5 45-34 48-48 14 3 43 10 48 48-38 5-45 34-48 48C34 134 5 127 0 90Z'/%3E%3Cpath d='M48 48v42M48 90h42M48 48l42 42M48 48L6 90M48 48c-20 8-20 34 0 42 20-8 20-34 0-42Z'/%3E%3Ccircle cx='48' cy='90' r='5'/%3E%3C/svg%3E");
     background-repeat: no-repeat; 
     background-size: contain; 
 }
@@ -136,7 +123,7 @@ button, input, select, textarea {
 
 
 
-/* =========== Cover ==========  */
+/* ================ Cover ===============  */
 .invitation-cover { 
     position: fixed; 
     z-index: 2000; 
@@ -147,7 +134,8 @@ button, input, select, textarea {
     min-height: 100svh; 
     padding: 4rem 1.5rem 5.5rem; 
     overflow: hidden; 
-    background: var(--ivory); 
+    background: var(--cocoa);   /* var(--ivory) */
+    color: var(--ivory);
     transition: opacity .85s var(--ease), visibility .85s var(--ease), transform 1s var(--ease); 
 }
 
@@ -178,13 +166,14 @@ button, input, select, textarea {
 .cover-eyebrow { 
     justify-content: center; 
     margin-bottom: 1.6rem; 
+    color: var(--terracotta-soft);   /* var(--terracotta-dark) */
     font-size: .62rem; 
     letter-spacing: .23em; 
 }
 
 .cover-title { 
     margin: 0; 
-    color: var(--charcoal); 
+    color: var(--ivory);   /* var(--charcoal) */
     font-family: var(--serif); 
     font-size: clamp(3.3rem, 8vw, 6.6rem); 
     font-weight: 400; 
@@ -193,14 +182,14 @@ button, input, select, textarea {
 }
 
 .cover-title span { 
-    color: var(--terracotta); 
+    color: var(--terracotta-soft);   /* var(--terracotta) */
     font-size: .7em; 
     font-style: italic; 
 }
 
 .cover-subtitle { 
     margin: 1.05rem 0 1.25rem; 
-    color: var(--muted); 
+    color: var(--sand);   /* var(--muted) */
     font-family: var(--serif); 
     font-size: 1.1rem; 
     font-style: italic; 
@@ -212,13 +201,14 @@ button, input, select, textarea {
     justify-content: center; 
     gap: .7rem; 
     margin-bottom: 1.1rem; 
-    color: var(--terracotta); 
+    color: var(--terracotta-soft); /* var(--terracotta) */
 }
 
 .cover-rule span { 
     width: 3.25rem; 
     height: 1px; 
     background: var(--sand-dark); 
+    opacity: .7;
 }
 
 .cover-rule i { 
@@ -228,7 +218,7 @@ button, input, select, textarea {
 
 .cover-date { 
     margin-bottom: 1.9rem; 
-    color: var(--charcoal); 
+    color: var(--ivory);   /* var(--charcoal) */
     font-size: .65rem; 
     font-weight: 700; 
     letter-spacing: .18em; 
@@ -236,7 +226,7 @@ button, input, select, textarea {
 
 .cover-date span { 
     margin-inline: .5rem; 
-    color: var(--terracotta); 
+    color: var(--terracotta-soft); 
 }
 
 .guest-greeting { 
@@ -244,12 +234,12 @@ button, input, select, textarea {
     flex-direction: column; 
     gap: .15rem; 
     margin-bottom: 2rem; 
-    color: var(--muted); 
+    color: var(--sand);   /* var(--muted) */
     font-size: .75rem; 
 }
 
 .guest-greeting strong { 
-    color: var(--charcoal); 
+    color: var(--ivory);   /* var(--charcoal) */
     font-family: var(--serif); 
     font-size: 1.15rem; 
     font-weight: 400; 
@@ -260,21 +250,25 @@ button, input, select, textarea {
     border-radius: 2px; 
     padding: .85rem 1.35rem; 
     background: var(--terracotta); 
-    color: #fffaf4; font-size: .72rem; 
-    font-weight: 700; letter-spacing: .045em; 
-    transition: background .25s ease, border-color .25s ease, transform .25s ease; 
+    color: #fffaf4; 
+    font-size: .72rem; 
+    font-weight: 700; 
+    letter-spacing: .045em; 
+    transition: background .25s ease, border-color .25s ease, color .25s ease, transform .25s ease; 
 }
 
 .btn-terracotta:hover, .btn-terracotta:focus-visible { 
-    border-color: var(--terracotta-dark); 
-    background: var(--terracotta-dark); 
-    color: #fff; 
+    border-color: var(--terracotta-soft); /* var(--terracotta-dark) */
+    background: var(--terracotta-soft); /* var(--terracotta-dark) */
+    color: var(--cocoa); /* var(#fff) */
     transform: translateY(-2px); 
+}
+
+.btn-terracotta:focus-visible {
+    outline: 2px solid var(--sand);
+    outline-offset: 3px;
 }
 
 .btn-open { 
     min-width: 190px; 
 }
-
-
-
