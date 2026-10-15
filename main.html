@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nama1 & Nama2 | Undangan Pernikahan</title>
+    <title>Undangan Pernikahan</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,19 +15,27 @@
 </head>
 <body>
 
-
+    <!-- ================= COVER ================= -->
     <section class="invitation-cover" id="invitation-cover">
         <div class="cover-bg-fade"></div>
         <span class="cover-ornament cover-ornament--tl"></span>
         <span class="cover-ornament cover-ornament--br"></span>
 
         <div class="cover-content container text-center">
-            <p class="eyebrow cover-eyebrow">UNDANGAN PERNIKAHAN</p>
-            <h1 class="cover-title" id="cover-title">Nama1 <span>&amp;</span> Nama2</h1>
-            <p class="cover-subtitle">Satu Hati, Banyak Cerita</p>
+            <p class="eyebrow cover-eyebrow" data-config="invitation.coverEyebrow">UNDANGAN PERNIKAHAN</p>
+            <h1 class="cover-title" id="cover-title">
+                <span class="partner-name" data-config="couple.partnerOne.nickname">Nama1</span>
+                <span class="name-ampersand">&amp;</span>
+                <span class="partner-name" data-config="couple.partnerTwo.nickname">Nama2</span>
+            </h1>
+            <p class="cover-subtitle" data-config="invitation.tagline">Satu Hati, Banyak Cerita</p>
             <div class="cover-rule"><span></span><i class="bi bi-flower1"></i><span></span></div>
-            <p class="cover-date">SABTU, 30 DESEMBER 2026<span>·</span> YOGYAKARTA</p>
-
+            <p class="cover-date">
+                <span class="cover-date-value" data-config="wedding.dateLong">DAY, DATE MONTH YEAR</span>
+                <span class="cover-date-separator">·</span>
+                <span class="cover-date-value" data-config="venue.cityProvince">Yogyakarta, DI Yogyakarta</span>
+            </p>
+            
             <div class="guest-greeting">
                 <span>Kepada Yth.</span>
                 <strong id="guest-name">Tamu Undangan</strong>
@@ -36,10 +44,66 @@
                 Buka Undangan
             </button>
         </div>
-
     </section>
 
 
+    <!-- ================= NAVIGASI ================= -->
+    <header class="site-nav" id="site-nav" inert>
+        <nav class="container d-flex justify-content-between align-items-center" aria-label="Navigasi utama">
+            <a class="nav-brand" href="#hero" data-scroll id="nav-brand" aria-label="Kembali ke halaman utama">
+                <span id="nav-initial-one">N</span>
+                <span class="nav-brand-ampersand">&amp;</span>
+                <span id="nav-initial-two">N</span>
+            </a>
+            <button class="btn-menu" type="button" data-bs-toggle="offcanvas" data-bs-target="#menu" aria-controls="menu">
+                MENU
+            </button>
+        </nav>
+    </header>
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="menu" aria-labelledby="menu-label">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title" id="menu-label">Menu</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Tutup menu"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="menu-list">
+                <li><a href="#mempelai" data-scroll>Mempelai</a></li>
+                <li><a href="#cerita" data-scroll>Cerita Kami</a></li>
+                <li><a href="#acara" data-scroll>Acara</a></li>
+                <li><a href="#galeri" data-scroll>Galeri</a></li>
+                <li><a href="#rsvp" data-scroll>Konfirmasi Hadir</a></li>
+                <li><a href="#ucapan" data-scroll>Ucapan &amp; Doa</a></li>
+                <li><a href="#hadiah" data-scroll>Hadiah</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+    <!-- ================= HERO ================= -->
+    <main id="main" inert>
+        <section class="hero" id="hero">
+            <div class="hero-bg-fade"></div>
+
+            <div class="hero-inner">
+                <p class="eyebrow hero-eyebrow hero-fade" data-config="invitation.heroEyebrow">KAMI MENGUNDANG ANDA KE PERNIKAHAN</p>
+
+                <h1 class="hero-names" id="hero-title" tabindex="-1">
+                    <span class="hero-line hero-line--first">
+                        <span data-config="couple.partnerOne.nickname">Nama1</span>
+                    </span>
+                    <span class="hero-ampersand">&amp;</span>
+                    <span class="hero-line hero-line--second">
+                        <span data-config="couple.partnerTwo.nickname">Nama2</span>
+                    </span>
+                </h1>
+
+                <p class="hero-date hero-fade" data-config="wedding.dateLong">DAY, DATE MONTH YEAR</p>
+                <p class="hero-place hero-fade" data-config="venue.cityProvince">Yogyakarta, DI Yogyakarta</p>
+                <div class="hero-divider hero-fade" aria-hidden="true"></div>
+            </div>
+        </section>
+    </main>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
