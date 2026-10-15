@@ -1,0 +1,280 @@
+:root {
+  --ivory: #f8f5ef;
+  --paper: #f1eae0;
+  --sand: #dccbb3;
+  --sand-dark: #c7ae8c;
+  --terracotta: #b85d3c;
+  --terracotta-dark: #93462f;
+  --olive: #56634b;
+  --olive-dark: #344337;
+  --charcoal: #292825;
+  --muted: #787167;
+  --line: rgba(63, 52, 41, .18);
+  --serif: "Playfair Display", Georgia, serif;
+  --sans: "DM Sans", Arial, sans-serif;
+  --page-gutter: clamp(1.25rem, 5vw, 5.5rem);
+  --section-space: clamp(5rem, 9vw, 9rem);
+  --ease: cubic-bezier(.22, .61, .36, 1);
+}
+
+
+*, *::before, *::after { 
+    box-sizing: border-box; 
+    margin: 0; 
+}
+
+html { 
+    scroll-behavior: smooth; 
+    scroll-padding-top: 92px; 
+}
+
+body { 
+    background: var(--ivory); 
+    color: var(--charcoal); 
+    font-family: var(--sans); 
+    font-size: 15px; 
+    line-height: 1.7; 
+    -webkit-font-smoothing: antialiased; 
+    /* overflow: hidden; */
+}
+
+img { 
+    display: block; 
+    max-width: 100%; 
+}
+
+a { 
+    color: inherit; 
+}
+
+button, input, select, textarea { 
+    font: inherit; 
+}
+
+::selection { 
+    background: var(--terracotta); 
+    color: white; 
+    /* #f6f1e7 */
+}
+
+.skip-link { 
+    position: fixed; 
+    z-index: 9999; 
+    top: 8px; 
+    left: 8px; 
+    padding: .6rem 1rem; 
+    background: var(--charcoal); 
+    color: #fff; 
+    transform: translateY(-150%); 
+}
+
+.skip-link:focus { 
+    transform: translateY(0); 
+}
+
+
+
+
+
+/* Shared typography and small details */
+.eyebrow { 
+    display: flex; 
+    align-items: center; 
+    gap: .7rem; 
+    margin: 0 0 1.25rem; 
+    color: var(--terracotta-dark); 
+    font-size: .63rem; 
+    font-weight: 700; 
+    letter-spacing: .19em; 
+    line-height: 1.5; 
+}
+
+
+
+/* ========== hiasan ========== */
+.cover-bg-fade {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  width: 90%;
+  height: 90%;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' fill='none' stroke='%23B8924A' stroke-width='1'%3E%3Cellipse cx='40' cy='20' rx='10' ry='20'/%3E%3Cellipse cx='40' cy='60' rx='10' ry='20'/%3E%3Cellipse cx='20' cy='40' rx='20' ry='10'/%3E%3Cellipse cx='60' cy='40' rx='20' ry='10'/%3E%3Ccircle cx='40' cy='40' r='3'/%3E%3C/svg%3E");
+  background-repeat: repeat;       
+  background-size: 90px auto;     
+  background-position: center;
+  
+  opacity: 0.25;                  
+
+  -webkit-mask-image: radial-gradient(ellipse farthest-side at center, black 20%, rgba(0, 0, 0, 0.7) 50%, transparent 100%);
+  mask-image: radial-gradient(ellipse farthest-side at center, black 20%, rgba(0, 0, 0, 0.7) 50%, transparent 100%);
+
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cover-ornament { 
+    position: absolute; 
+    width: clamp(120px, 18vw, 250px); 
+    aspect-ratio: 1; opacity: .83;
+    pointer-events: none; 
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220' fill='none' stroke='%23b85d3c' stroke-width='.8'%3E%3Cpath d='M0 0h105M0 0v105M0 0c0 43 62 43 62 0M0 0c43 0 43 62 0 62M0 22c31 0 31 43 0 43M22 0c0 31 43 31 43 0M0 0l80 80M15 0l65 65M0 15l65 65'/%3E%3Cpath d='M0 90c38-5 45-34 48-48 14 3 43 10 48 48-38 5-45 34-48 48C34 134 5 127 0 90Z'/%3E%3Cpath d='M48 48v42M48 90h42M48 48l42 42M48 48L6 90M48 48c-20 8-20 34 0 42 20-8 20-34 0-42Z'/%3E%3Ccircle cx='48' cy='90' r='5'/%3E%3C/svg%3E"); 
+    background-repeat: no-repeat; 
+    background-size: contain; 
+}
+
+.cover-ornament--tl { 
+    top: 0; 
+    left: 0; 
+}
+
+.cover-ornament--br { 
+    right: 0; 
+    bottom: 0; 
+    transform: rotate(180deg); 
+}
+
+
+
+/* =========== Cover ==========  */
+.invitation-cover { 
+    position: fixed; 
+    z-index: 2000; 
+    inset: 0; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    min-height: 100svh; 
+    padding: 4rem 1.5rem 5.5rem; 
+    overflow: hidden; 
+    background: var(--ivory); 
+    transition: opacity .85s var(--ease), visibility .85s var(--ease), transform 1s var(--ease); 
+}
+
+.invitation-cover.leaving { 
+    opacity: 0; 
+    visibility: hidden; 
+    transform: scale(1.025); 
+    pointer-events: none; 
+}
+
+.cover-content { 
+    position: relative; 
+    z-index: 2; 
+    max-width: 760px; 
+    animation: cover-arrive 1s var(--ease) both; 
+}
+
+@keyframes cover-arrive { 
+    from { 
+        opacity: 0; 
+        transform: translateY(18px); 
+    } to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    } 
+}
+
+.cover-eyebrow { 
+    justify-content: center; 
+    margin-bottom: 1.6rem; 
+    font-size: .62rem; 
+    letter-spacing: .23em; 
+}
+
+.cover-title { 
+    margin: 0; 
+    color: var(--charcoal); 
+    font-family: var(--serif); 
+    font-size: clamp(3.3rem, 8vw, 6.6rem); 
+    font-weight: 400; 
+    letter-spacing: -.065em; 
+    line-height: 1.02; 
+}
+
+.cover-title span { 
+    color: var(--terracotta); 
+    font-size: .7em; 
+    font-style: italic; 
+}
+
+.cover-subtitle { 
+    margin: 1.05rem 0 1.25rem; 
+    color: var(--muted); 
+    font-family: var(--serif); 
+    font-size: 1.1rem; 
+    font-style: italic; 
+}
+
+.cover-rule { 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    gap: .7rem; 
+    margin-bottom: 1.1rem; 
+    color: var(--terracotta); 
+}
+
+.cover-rule span { 
+    width: 3.25rem; 
+    height: 1px; 
+    background: var(--sand-dark); 
+}
+
+.cover-rule i { 
+    font-size: .8rem; 
+    font-style: normal; 
+}
+
+.cover-date { 
+    margin-bottom: 1.9rem; 
+    color: var(--charcoal); 
+    font-size: .65rem; 
+    font-weight: 700; 
+    letter-spacing: .18em; 
+}
+
+.cover-date span { 
+    margin-inline: .5rem; 
+    color: var(--terracotta); 
+}
+
+.guest-greeting { 
+    display: flex; 
+    flex-direction: column; 
+    gap: .15rem; 
+    margin-bottom: 2rem; 
+    color: var(--muted); 
+    font-size: .75rem; 
+}
+
+.guest-greeting strong { 
+    color: var(--charcoal); 
+    font-family: var(--serif); 
+    font-size: 1.15rem; 
+    font-weight: 400; 
+}
+
+.btn-terracotta { 
+    border: 1px solid var(--terracotta); 
+    border-radius: 2px; 
+    padding: .85rem 1.35rem; 
+    background: var(--terracotta); 
+    color: #fffaf4; font-size: .72rem; 
+    font-weight: 700; letter-spacing: .045em; 
+    transition: background .25s ease, border-color .25s ease, transform .25s ease; 
+}
+
+.btn-terracotta:hover, .btn-terracotta:focus-visible { 
+    border-color: var(--terracotta-dark); 
+    background: var(--terracotta-dark); 
+    color: #fff; 
+    transform: translateY(-2px); 
+}
+
+.btn-open { 
+    min-width: 190px; 
+}
+
+
+
