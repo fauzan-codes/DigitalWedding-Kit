@@ -12,6 +12,7 @@
     --muted: #787167;
     --line: rgba(63, 52, 41, .18);
     --cocoa: #1f1b18;              
+    --gold: #b8924a;
 
     --serif: "Playfair Display", Georgia, serif;
     --sans: "DM Sans", Arial, sans-serif;
@@ -23,6 +24,7 @@
     --ornament-corner: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220' fill='none' stroke='%23dd8a6c' stroke-width='.8'%3E%3Cpath d='M0 0h105M0 0v105M0 0c0 43 62 43 62 0M0 0c43 0 43 62 0 62M0 22c31 0 31 43 0 43M22 0c0 31 43 31 43 0M0 0l80 80M15 0l65 65M0 15l65 65'/%3E%3Cpath d='M0 90c38-5 45-34 48-48 14 3 43 10 48 48-38 5-45 34-48 48C34 134 5 127 0 90Z'/%3E%3Cpath d='M48 48v42M48 90h42M48 48l42 42M48 48L6 90M48 48c-20 8-20 34 0 42 20-8 20-34 0-42Z'/%3E%3Ccircle cx='48' cy='90' r='5'/%3E%3C/svg%3E");
     --bg-pattern-center: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' fill='none' stroke='%23B8924A' stroke-width='1'%3E%3Cellipse cx='40' cy='20' rx='10' ry='20'/%3E%3Cellipse cx='40' cy='60' rx='10' ry='20'/%3E%3Cellipse cx='20' cy='40' rx='20' ry='10'/%3E%3Cellipse cx='60' cy='40' rx='20' ry='10'/%3E%3Ccircle cx='40' cy='40' r='3'/%3E%3C/svg%3E");
     --rebung: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='16' fill='none' stroke='%23B8924A' stroke-width='1'%3E%3Cpath d='M0 15.5 L10 .5 L20 15.5 M5 15.5 L10 8 L15 15.5'/%3E%3C/svg%3E");
+    --ikat: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='12'%3E%3Cpath d='M0 6 L6 0 L12 6 L6 12Z' fill='%23b85d3c'/%3E%3Cpath d='M12 6 L18 0 L24 6 L18 12Z' fill='%23B8924A'/%3E%3C/svg%3E");
 }
 
 
@@ -418,7 +420,6 @@ body:not(.opened) .site-nav {
     margin-bottom: 1.75rem; 
 }
 
-/* Nama bertingkat: yang pertama di kiri, yang kedua di kanan, simpul di tengah */
 .hero-names { 
     display: grid; 
     margin: 0 0 1.9rem; 
@@ -451,7 +452,6 @@ body:not(.opened) .site-nav {
     margin-right: -10%;
 }
 
-/* nama naik dari bawah garis saat undangan dibuka */
 .hero-line > span { 
     display: inline-block; 
     transform: translateY(110%); 
@@ -473,13 +473,9 @@ body:not(.opened) .site-nav {
     font-weight: 400;
     line-height: 1;
 
-
-
     opacity: 0;
     transform: translateY(110%);
-    transition: transform 0.8s var(--ease) 0.45s;
-    transform: translateY(110%); 
-    transition: transform 1.2s var(--ease) .35s; 
+    transition: opacity .9s var(--ease) .45s, transform 1.2s var(--ease) .35s; 
 }
 
 .opened .hero-ampersand {
@@ -510,7 +506,6 @@ body:not(.opened) .site-nav {
     background: var(--rebung) repeat-x center; 
 }
 
-/* elemen pendukung muncul setelah nama selesai naik */
 .hero-fade { 
     opacity: 0; 
     transform: translateY(12px); 
@@ -521,6 +516,137 @@ body:not(.opened) .site-nav {
     opacity: 1; 
     transform: translateY(0); 
 }
+
+
+
+[data-reveal] { 
+    opacity: 0; 
+    transform: translateY(14px); 
+    transition: opacity .8s var(--ease), transform .8s var(--ease); 
+}
+
+[data-reveal].is-visible { 
+    opacity: 1; 
+    transform: translateY(0); 
+}
+
+.couple-card--second[data-reveal] { 
+    transition-delay: .15s; 
+}
+
+
+
+/* ================ Salam ===============  */
+.section-greeting { 
+    padding: calc(var(--section-space) * .8) var(--page-gutter); 
+    background: var(--olive); 
+    color: var(--ivory); 
+    text-align: center; 
+}
+
+.greeting-inner { 
+    max-width: 42rem; 
+    margin-inline: auto; 
+}
+
+.section-rule { 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    gap: .7rem; 
+    margin-bottom: 1.75rem; 
+    color: var(--terracotta-soft); 
+}
+
+.section-rule span { 
+    width: 3.25rem; 
+    height: 1px; 
+    background: var(--sand-dark); 
+    opacity: .7; 
+}
+
+.section-rule i { 
+    font-size: .8rem; 
+}
+
+.greeting-text { 
+    margin: 0 auto 1.5rem; 
+    font-family: var(--serif); 
+    font-size: clamp(1.5rem, 4vw, 2.1rem); 
+    line-height: 1.45; 
+    text-wrap: balance; 
+}
+
+.greeting-sign { 
+    margin: 0; 
+    color: var(--paper); 
+    font-size: .8rem; 
+    letter-spacing: .04em; 
+}
+
+
+
+/* ================ Mempelai ===============  */
+.section-couple { 
+    padding: var(--section-space) 0; 
+}
+
+.section-eyebrow { 
+    justify-content: center; 
+    margin-bottom: 1rem; 
+}
+
+.section-title { 
+    margin: 0 auto 3.5rem; 
+    color: var(--charcoal); 
+    font-family: var(--serif); 
+    font-size: clamp(2.2rem, 6vw, 3.4rem); 
+    font-weight: 400; 
+    letter-spacing: -.04em; 
+    line-height: 1.1; 
+}
+
+.arch-frame { 
+    padding: 9px; 
+    margin-bottom: 1.75rem; 
+    border: 1px solid var(--gold); 
+    border-radius: 999px 999px 0 0; 
+}
+
+.arch-photo { 
+    --img: none; 
+    aspect-ratio: 3 / 4; 
+    border-radius: 999px 999px 0 0; 
+    background-image: var(--img), var(--bg-pattern-center), linear-gradient(165deg, #e3d8bf, #c9b58b); 
+    background-size: cover, 80px 80px, cover; 
+    background-repeat: no-repeat, repeat, no-repeat; 
+    background-position: center; 
+}
+
+.couple-name { 
+    margin-bottom: .5rem; 
+    font-family: var(--serif); 
+    font-size: clamp(1.7rem, 3.2vw, 2.1rem); 
+    font-weight: 400; 
+    letter-spacing: -.03em; 
+    line-height: 1.15; 
+}
+
+.couple-parents { 
+    max-width: 22rem; 
+    margin: 0 auto 1.25rem; 
+    color: var(--muted); 
+    text-wrap: balance; 
+}
+
+.ikat-strip { 
+    width: 7.5rem; 
+    height: 12px; 
+    margin-inline: auto; 
+    background: var(--ikat) repeat-x center; 
+}
+
+
 
 @media (prefers-reduced-motion: reduce) {
     html { 

@@ -3,13 +3,15 @@ const WEDDING_CONFIG = {
         partnerOne: {
             nickname: "Nama1",
             fullName: "Nama Lengkap Pasangan Pertama",
-            parents: "Putra dari Bapak dan Ibu ..."
+            parents: "Putra dari Bapak dan Ibu ...",
+            photo: "src/partner-one.jpg"
         },
 
         partnerTwo: {
             nickname: "Nama2",
             fullName: "Nama Lengkap Pasangan Kedua",
-            parents: "Putri dari Bapak dan Ibu ..."
+            parents: "Putri dari Bapak dan Ibu ...",
+            photo: "src/partner-two.jpg"
         }
     },
 
@@ -18,6 +20,10 @@ const WEDDING_CONFIG = {
         coverEyebrow: "UNDANGAN PERNIKAHAN",
         heroEyebrow: "KAMI MENGUNDANG ANDA KE PERNIKAHAN",
         tagline: "Satu Hati, Banyak Cerita",
+        greetingText: "Dengan penuh syukur, kami mengundang Bapak, Ibu, dan Saudara untuk hadir dan memberikan doa restu pada hari bahagia kami.",
+        greetingSign: "Salam hangat dari kami dan keluarga",
+        coupleEyebrow: "KEDUA MEMPELAI",
+        coupleTitle: "Dua Keluarga, Satu Ikatan",
         defaultGuestName: "Tamu Undangan",
         guestQueryParameter: "to"
     },
@@ -86,6 +92,7 @@ function getVenueMapsUrl() {
     }`;
 }
 
+
 function getInitial(name) {
     const firstWord = String(name || "").trim().split(/\s+/)[0] || "";
     return Array.from(firstWord)[0]?.toLocaleUpperCase(WEDDING_CONFIG.wedding.locale) || "";
@@ -143,8 +150,49 @@ function applyWeddingConfig() {
         link.target = "_blank";
         link.rel = "noopener noreferrer";
     });
+
+    applyPartnerPhotos();
 }
 
+
+function applyPartnerPhotos() {
+    document.querySelectorAll("[data-config-photo]").forEach((element) => {
+        const partner = getConfigValue(element.dataset.configPhoto);
+
+        if (!partner) {
+            return;
+        }
+
+        if (partner.photo) {
+            element.style.setProperty("--img", `url("${encodeURI(partner.photo)}")`);
+        }
+
+        element.setAttribute("aria-label", `Foto ${partner.nickname}`);
+    });
+}
+
+
+function startRevealOnScroll(reduceMotion) {
+    const items = document.querySelectorAll("[data-reveal]");
+
+    if (!items.length) {
+        return;
+    }
+
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+        items.forEach((item) => item.classList.add("is-visible"));
+        return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+        }});
+    }, { threshold: 0.2 });
+
+    items.forEach((item) => observer.observe(item));
+}
 
 
 function applyGuestName() {
@@ -161,7 +209,6 @@ function applyGuestName() {
 
     guestNameElement.textContent = displayName;
 }
-
 
 
 function startCountdown() {
@@ -208,7 +255,6 @@ function startCountdown() {
 }
 
 
-/* MAIN PAGE INTERACTIONS */
 document.addEventListener("DOMContentLoaded", () => {
     const body = document.body;
     const cover = document.getElementById("invitation-cover");
@@ -223,6 +269,7 @@ document.addEventListener("DOMContentLoaded", () => {
     applyWeddingConfig();
     applyGuestName();
     startCountdown();
+    startRevealOnScroll(reduceMotion);
 
     /* ---------- 1. Open invitation ---------- */
     function openInvitation() {
