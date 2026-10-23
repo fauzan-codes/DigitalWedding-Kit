@@ -14,7 +14,7 @@
     <link href="style.css" rel="stylesheet">
 </head>
 <body>
-
+ 
     <!-- ================= COVER ================= -->
     <section class="invitation-cover" id="invitation-cover">
         <div class="cover-bg-fade"></div>
@@ -71,10 +71,8 @@
                 <li><a href="#mempelai" data-scroll>Mempelai</a></li>
                 <li><a href="#cerita" data-scroll>Cerita Kami</a></li>
                 <li><a href="#acara" data-scroll>Acara</a></li>
-                <li><a href="#galeri" data-scroll>Galeri</a></li>
-                <li><a href="#rsvp" data-scroll>Konfirmasi Hadir</a></li>
+                <li><a href="#lokasi" data-scroll>Lokasi</a></li>
                 <li><a href="#ucapan" data-scroll>Ucapan &amp; Doa</a></li>
-                <li><a href="#hadiah" data-scroll>Hadiah</a></li>
             </ul>
         </div>
     </div>
@@ -177,8 +175,223 @@
         </section>
 
 
+        <!-- ================= HITUNG MUNDUR ================= -->
+        <section class="section-event" id="acara">
+            <div class="container">
 
+                <header class="event-header" data-reveal>
+                    <h2 class="event-title">
+                        <span data-config="event.titleLineOne">The day</span>
+                        <span class="event-title-accent" data-config="event.titleLineTwo">we say yes.</span>
+                    </h2>
+                    <p class="event-subtitle" data-config="event.subtitle">Dengan restu dan doa keluarga, kami menantikan kehadiran Anda.</p>
+                </header>
+
+                <div class="countdown-card" data-reveal>
+                    <div class="countdown-head">
+                        <span class="countdown-label" data-config="event.countdownLabel">MENUJU HARI BAHAGIA</span>
+                        <i class="bi bi-flower1 countdown-ornament"></i>
+                        <span class="countdown-date" data-config="wedding.dateShort">DD · MM · YYYY</span>
+                    </div>
+
+                    <div class="countdown-grid">
+                        <div class="countdown-unit">
+                            <strong class="countdown-value" data-countdown="days">00</strong>
+                            <span class="countdown-unit-label">HARI</span>
+                        </div>
+                        <span class="countdown-colon">:</span>
+                        <div class="countdown-unit">
+                            <strong class="countdown-value" data-countdown="hours">00</strong>
+                            <span class="countdown-unit-label">JAM</span>
+                        </div>
+                        <span class="countdown-colon">:</span>
+                        <div class="countdown-unit">
+                            <strong class="countdown-value" data-countdown="minutes">00</strong>
+                            <span class="countdown-unit-label">MENIT</span>
+                        </div>
+                        <span class="countdown-colon">:</span>
+                        <div class="countdown-unit">
+                            <strong class="countdown-value" data-countdown="seconds">00</strong>
+                            <span class="countdown-unit-label">DETIK</span>
+                        </div>
+                    </div>
+
+                    <p class="countdown-note" data-config="event.countdownNote">Sampai jumpa di hari yang kami nantikan.</p>
+                </div>
+
+                <article class="event-card" data-reveal>
+                    <div class="event-card-head">
+                        <span class="event-card-label" data-config="event.cardLabel">Hari Pernikahan</span>
+                        <i class="bi bi-sunrise"></i>
+                    </div>
+
+                    <div class="event-card-body">
+                        <p class="eyebrow event-card-eyebrow" data-config="event.eyebrow">AKAD NIKAH</p>
+                        <h3 class="event-card-title" data-config="event.cardTitle">Awal Sebuah Janji</h3>
+
+                        <ul class="event-details">
+                            <li>
+                                <i class="bi bi-calendar3"></i>
+                                <span data-config="wedding.dateFull">Hari, tanggal bulan tahun</span>
+                            </li>
+                            <li>
+                                <i class="bi bi-clock"></i>
+                                <span data-config="wedding.ceremonyTimeDisplay">08:00 WIB</span>
+                            </li>
+                            <li>
+                                <i class="bi bi-geo-alt"></i>
+                                <span data-config="venue.buildingCity">Nama Gedung Pernikahan, Yogyakarta</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="event-card-foot">
+                        <span data-config="event.dressCode">BUSANA: FORMAL / TRADISIONAL</span>
+                        <a class="event-card-link" href="#lokasi" data-scroll aria-label="Lihat lokasi acara">
+                            <i class="bi bi-arrow-up-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+
+        <!-- ================= LOKASI ================= -->
+        <section class="section-location" id="lokasi">
+            <div class="container">
+                <div class="location-layout">
+
+                    <div class="location-info" data-reveal>
+                        <p class="eyebrow location-eyebrow" data-config="location.eyebrow">TEMUKAN KAMI</p>
+                        <h2 class="location-title">
+                            <span data-config="location.titleLineOne">Meet us where</span>
+                            <span class="location-title-accent" data-config="location.titleLineTwo">stories gather.</span>
+                        </h2>
+                        <p class="location-description" data-config="location.description">
+                            Kami memilih sebuah ruang yang hangat untuk menyambut keluarga dan sahabat. Simpan alamat ini agar perjalanan Anda lebih mudah.
+                        </p>
+
+                        <div class="location-address">
+                            <p class="location-address-label" data-config="location.addressLabel">TEMPAT ACARA</p>
+                            <h3 class="location-venue" data-config="venue.building">Nama Gedung Pernikahan</h3>
+                            <p class="location-street" data-config="venue.street">Jalan Contoh Nomor 123</p>
+                            <p class="location-city" data-config="venue.cityProvince">Yogyakarta, DI Yogyakarta</p>
+
+                            <a class="btn-outline-terracotta" data-venue-map-link href="#">
+                                Buka Google Maps <i class="bi bi-arrow-up-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="location-map" data-reveal>
+                        <div class="map-frame">
+                            <iframe title="Peta lokasi acara" data-venue-map-embed loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+                        </div>
+                        <p class="map-caption">
+                            <i class="bi bi-info-circle"></i>
+                            <span data-config="location.mapCaption">Peta dapat digeser dan diperbesar.</span>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= UCAPAN & DOA ================= -->
+        <section class="section-wishes" id="ucapan">
+            <div class="container">
+
+                <header class="wishes-header" data-reveal>
+                    <h2 class="wishes-title">
+                        <span data-config="wishes.titleLineOne">Kind words,</span>
+                        <span class="wishes-title-accent" data-config="wishes.titleLineTwo">kept with care.</span>
+                    </h2>
+                    <p class="wishes-subtitle" data-config="wishes.subtitle">Tinggalkan ucapan dan doa untuk kami. Setiap kata akan kami simpan dengan baik.</p>
+                </header>
+
+                <div class="wishes-layout">
+
+                    <form class="wishes-form" id="wishes-form" novalidate data-reveal>
+                        <div class="wishes-field">
+                            <label class="wishes-label" for="wish-name">NAMA</label>
+                            <input class="wishes-input" id="wish-name" name="name" type="text" autocomplete="name" required>
+                        </div>
+
+                        <div class="wishes-field">
+                            <label class="wishes-label" for="wish-message">UCAPAN &amp; DOA</label>
+                            <textarea class="wishes-input" id="wish-message" name="message" rows="5" required></textarea>
+                            <p class="wishes-counter"><span id="wish-counter">280</span> karakter tersisa</p>
+                        </div>
+
+                        <!-- kolom jebakan untuk bot: manusia tidak melihatnya -->
+                        <input class="wishes-trap" id="wish-trap" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+                        <button class="btn btn-terracotta wishes-submit" id="wish-submit" type="submit">Kirim ucapan</button>
+                        <p class="wishes-status" id="wishes-status" role="status" aria-live="polite"></p>
+                        <p class="wishes-note" id="wishes-note"></p>
+                    </form>
+
+                    <div class="wishes-board" data-reveal>
+                        <p class="eyebrow wishes-count" id="wishes-count">UCAPAN</p>
+                        <ul class="wishes-list" id="wishes-list" aria-live="polite">
+                            <li class="wishes-empty">Memuat ucapan...</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= PENUTUP ================= -->
+        <section class="section-closing" id="penutup">
+            <span class="closing-ornament closing-ornament--bl"></span>
+            <span class="closing-ornament closing-ornament--br"></span>
+
+            <div class="container closing-inner" data-reveal>
+                <i class="bi bi-flower1 closing-symbol"></i>
+                <p class="eyebrow closing-eyebrow" data-config="closing.eyebrow">SAMPAI DI HARI BAHAGIA</p>
+
+                <h2 class="closing-title">
+                    <span data-config="closing.titleLineOne">Terima kasih telah</span>
+                    <span class="closing-title-accent" data-config="closing.titleLineTwo">menjadi bagian cerita.</span>
+                </h2>
+
+                <p class="closing-text" data-config="closing.text">Merupakan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.</p>
+
+                <p class="closing-names">
+                    <span data-config="couple.partnerOne.nickname">Nama1</span>
+                    <span class="closing-ampersand">&amp;</span>
+                    <span data-config="couple.partnerTwo.nickname">Nama2</span>
+                </p>
+
+                <p class="closing-date">
+                    <span data-config="wedding.dateLong">DAY, DATE MONTH YEAR</span>
+                    <span class="closing-date-separator">·</span>
+                    <span data-config="venue.cityUpper">YOGYAKARTA</span>
+                </p>
+
+                <button class="btn-outline-ivory" id="share-invitation" type="button">
+                    <i class="bi bi-share"></i>
+                    <span id="share-label">Bagikan Undangan</span>
+                </button>
+            </div>
+        </section>
     </main>
+
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="site-footer" id="site-footer" inert>
+        <div class="container">
+            <div class="footer-inner">
+                <span class="footer-copy" data-config="closing.copyright">NAMA1 &amp; NAMA2 © 2026</span>
+                <span class="footer-credit" data-config="closing.credit">DIBUAT DENGAN CINTA &amp; RASA</span>
+                <a class="footer-top" href="#hero" data-scroll>KEMBALI KE ATAS <i class="bi bi-arrow-up"></i></a>
+            </div>
+        </div>
+    </footer>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

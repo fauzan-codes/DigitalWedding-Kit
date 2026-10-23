@@ -59,6 +59,72 @@ const WEDDING_CONFIG = {
         ]
     },
 
+    event: {
+        titleLineOne: "The day",
+        titleLineTwo: "we say yes.",
+        subtitle: "Dengan restu dan doa keluarga, kami menantikan kehadiran Anda.",
+        countdownLabel: "MENUJU HARI BAHAGIA",
+        countdownNote: "Sampai jumpa di hari yang kami nantikan.",
+        cardLabel: "Hari Pernikahan",
+        eyebrow: "AKAD NIKAH",
+        cardTitle: "Awal Sebuah Janji",
+        dressCode: "BUSANA: FORMAL / TRADISIONAL"
+    },
+
+    location: {
+        eyebrow: "TEMUKAN KAMI",
+        titleLineOne: "Meet us where",
+        titleLineTwo: "stories gather.",
+        description: "Kami memilih sebuah ruang yang hangat untuk menyambut keluarga dan sahabat. Simpan alamat ini agar perjalanan Anda lebih mudah.",
+        addressLabel: "TEMPAT ACARA",
+        mapCaption: "Peta dapat digeser dan diperbesar."
+    },
+
+    wishes: {
+        titleLineOne: "Kind words,",
+        titleLineTwo: "kept with care.",
+        subtitle: "Tinggalkan ucapan dan doa untuk kami. Setiap kata akan kami simpan dengan baik.",
+        storageKey: "wedding.wishes",
+        maxNameLength: 40,
+        maxMessageLength: 280,
+        samples: [
+            {
+                name: "Keluarga Besar",
+                message: "Selamat menempuh hidup baru. Semoga selalu dilimpahi kebahagiaan dan keberkahan.",
+                date: "2026-10-12"
+            },
+            {
+                name: "Teman Kuliah",
+                message: "Akhirnya! Bahagia selalu untuk kalian berdua.",
+                date: "2026-10-11"
+            },
+            {
+                name: "Sahabat Lama",
+                message: "Semoga cinta kalian terus tumbuh dan menjadi rumah yang hangat untuk keluarga kecil kalian.",
+                date: "2026-10-09"
+            },
+            {
+                name: "Rekan Kerja",
+                message: "Selamat ya! Sampai jumpa di hari bahagia kalian.",
+                date: "2026-10-08"
+            },
+            {
+                name: "Tante Rina",
+                message: "Doa terbaik untuk kalian berdua. Semoga selalu rukun, saling menyayangi, dan diberkahi sepanjang hidup.",
+                date: "2026-10-06"
+            }
+        ]
+    },
+
+    closing: {
+        eyebrow: "SAMPAI DI HARI BAHAGIA",
+        titleLineOne: "Terima kasih telah",
+        titleLineTwo: "menjadi bagian cerita.",
+        text: "Merupakan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.",
+        credit: "DIBUAT DENGAN CINTA & RASA",
+        shareText: "Kami mengundang Anda ke hari pernikahan kami."
+    },
+
     wedding: {
         date: "2026-12-30",
         timeZone: "Asia/Jakarta",
@@ -75,7 +141,9 @@ const WEDDING_CONFIG = {
         city: "Yogyakarta",
         province: "DI Yogyakarta",
         country: "Indonesia",
-        postalCode: ""
+        postalCode: "",
+
+        mapEmbedUrl: ""
     }
 };
 
@@ -93,16 +161,23 @@ function getWeddingDate() {
     return new Date(`${date}T12:00:00${utcOffset}`);
 }
 
-function formatWeddingDate() {
+function formatWeddingDate(upperCase = true) {
     const { locale, timeZone } = WEDDING_CONFIG.wedding;
 
-    return new Intl.DateTimeFormat(locale, {
+    const text = new Intl.DateTimeFormat(locale, {
         weekday: "long",
         day: "numeric",
         month: "long",
         year: "numeric",
         timeZone
-    }).format(getWeddingDate()).toLocaleUpperCase(locale);
+    }).format(getWeddingDate());
+
+    return upperCase ? text.toLocaleUpperCase(locale) : text;
+}
+
+function formatWeddingDateShort() {
+    const [year, month, day] = WEDDING_CONFIG.wedding.date.split("-");
+    return `${day} · ${month} · ${year}`;
 }
 
 function getVenueCityProvince() {
@@ -137,16 +212,35 @@ function getVenueMapsUrl() {
     }`;
 }
 
+function getVenueMapEmbedUrl() {
+    const { mapEmbedUrl } = WEDDING_CONFIG.venue;
+
+    if (mapEmbedUrl) {
+        return mapEmbedUrl;
+    }
+
+    return `https://maps.google.com/maps?q=${encodeURIComponent(getVenueFullAddress())}&z=15&output=embed`;
+}
+
 
 function getInitial(name) {
     const firstWord = String(name || "").trim().split(/\s+/)[0] || "";
     return Array.from(firstWord)[0]?.toLocaleUpperCase(WEDDING_CONFIG.wedding.locale) || "";
 }
 
+function getCopyrightText() {
+    const { couple, wedding } = WEDDING_CONFIG;
+    const year = wedding.date.split("-")[0];
+
+    return `${couple.partnerOne.nickname} & ${couple.partnerTwo.nickname} © ${year}`.toLocaleUpperCase(wedding.locale);
+}
+
 
 function resolveConfigValue(path) {
     const formattedValues = {
         "wedding.dateLong": formatWeddingDate(),
+        "wedding.dateFull": formatWeddingDate(false),
+        "wedding.dateShort": formatWeddingDateShort(),
         "wedding.dayName": new Intl.DateTimeFormat(
             WEDDING_CONFIG.wedding.locale,
             {weekday: "long", timeZone: WEDDING_CONFIG.wedding.timeZone}
@@ -155,8 +249,11 @@ function resolveConfigValue(path) {
         "wedding.ceremonyTimeDisplay":`${WEDDING_CONFIG.wedding.ceremonyTime} WIB`,
         "wedding.receptionTimeDisplay":`${WEDDING_CONFIG.wedding.receptionTime} WIB`,
         "venue.cityProvince": getVenueCityProvince(),
+        "venue.cityUpper": String(WEDDING_CONFIG.venue.city).toLocaleUpperCase(WEDDING_CONFIG.wedding.locale),
+        "venue.buildingCity": [WEDDING_CONFIG.venue.building, WEDDING_CONFIG.venue.city].filter(Boolean).join(", "),
         "venue.fullAddress": getVenueFullAddress(),
-        "story.yearRange": getStoryYearRange()
+        "story.yearRange": getStoryYearRange(),
+        "closing.copyright": getCopyrightText()
     };
 
     if (Object.prototype.hasOwnProperty.call(formattedValues, path)) {
@@ -166,7 +263,7 @@ function resolveConfigValue(path) {
     return getConfigValue(path);
 }
 
-// menerapkan config ke html
+
 function applyWeddingConfig() {
     const { couple, invitation } = WEDDING_CONFIG;
     document.title = `${couple.partnerOne.nickname} & ` + `${couple.partnerTwo.nickname} | ${invitation.pageTitle}`;
@@ -195,6 +292,10 @@ function applyWeddingConfig() {
         link.href = getVenueMapsUrl();
         link.target = "_blank";
         link.rel = "noopener noreferrer";
+    });
+
+    document.querySelectorAll("[data-venue-map-embed]").forEach((frame) => {
+        frame.src = getVenueMapEmbedUrl();
     });
 
     applyPartnerPhotos();
@@ -317,6 +418,8 @@ function startCountdown() {
         return;
     }
 
+    let countdownInterval = null;
+
     function updateCountdown() {
         const difference = Math.max(0, targetDate.getTime() - Date.now());
         const totalSeconds = Math.floor(difference / 1000);
@@ -334,16 +437,199 @@ function startCountdown() {
             }
         });
 
-        if (difference <= 0) {
+        if (difference <= 0 && countdownInterval !== null) {
             window.clearInterval(countdownInterval);
         }
     }
 
     updateCountdown();
-    const countdownInterval = window.setInterval(
+    countdownInterval = window.setInterval(
         updateCountdown,
         1000
     );
+}
+
+
+/* =========================================================
+   UCAPAN & DOA
+   - Ucapan baru disimpan di localStorage (sebagai JSON) dan tampil di atas.
+   - Di bawahnya selalu ada ucapan contoh dari WEDDING_CONFIG.wishes.samples.
+   ========================================================= */
+let savedWishes = readSavedWishes();
+
+function readSavedWishes() {
+    try {
+        const data = JSON.parse(window.localStorage.getItem(WEDDING_CONFIG.wishes.storageKey));
+        return Array.isArray(data) ? data : [];
+    } catch (error) {
+        return [];
+    }
+}
+
+function saveWish(wish) {
+    savedWishes = [wish, ...savedWishes].slice(0, 50);
+
+    try {
+        window.localStorage.setItem(WEDDING_CONFIG.wishes.storageKey, JSON.stringify(savedWishes));
+    } catch (error) {
+        // localStorage tidak tersedia: ucapan tetap tampil sampai halaman dimuat ulang
+    }
+}
+
+function formatWishDate(value) {
+    const date = new Date(value);
+
+    if (Number.isNaN(date.getTime())) {
+        return "";
+    }
+
+    const { locale, timeZone } = WEDDING_CONFIG.wedding;
+
+    return new Intl.DateTimeFormat(locale, {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+        timeZone
+    }).format(date);
+}
+
+function renderWishes() {
+    const list = document.getElementById("wishes-list");
+    const count = document.getElementById("wishes-count");
+
+    if (!list) {
+        return;
+    }
+
+    const wishes = [...savedWishes, ...WEDDING_CONFIG.wishes.samples];
+    list.replaceChildren();
+
+    if (count) {
+        count.textContent = `UCAPAN · ${wishes.length}`;
+    }
+
+    wishes.forEach((wish) => {
+        const item = document.createElement("li");
+        item.className = "wish-item";
+
+        const head = document.createElement("div");
+        head.className = "wish-head";
+
+        const name = document.createElement("strong");
+        name.className = "wish-name";
+        name.textContent = wish.name;
+
+        const date = document.createElement("span");
+        date.className = "wish-time";
+        date.textContent = formatWishDate(wish.date);
+
+        const message = document.createElement("p");
+        message.className = "wish-message";
+        message.textContent = wish.message;
+
+        head.append(name, date);
+        item.append(head, message);
+        list.appendChild(item);
+    });
+}
+
+function initWishes() {
+    const form = document.getElementById("wishes-form");
+
+    if (!form) {
+        return;
+    }
+
+    const nameInput = document.getElementById("wish-name");
+    const messageInput = document.getElementById("wish-message");
+    const counter = document.getElementById("wish-counter");
+    const status = document.getElementById("wishes-status");
+    const list = document.getElementById("wishes-list");
+
+    const { maxNameLength, maxMessageLength } = WEDDING_CONFIG.wishes;
+
+    nameInput.maxLength = maxNameLength;
+    messageInput.maxLength = maxMessageLength;
+    counter.textContent = String(maxMessageLength);
+
+    // Nama tamu dari URL (?to=...) dipakai sebagai isian awal
+    const guestName = (document.getElementById("guest-name")?.textContent || "").trim();
+    if (guestName && guestName !== WEDDING_CONFIG.invitation.defaultGuestName) {
+        nameInput.value = guestName.slice(0, maxNameLength);
+    }
+
+    function showStatus(text, type) {
+        status.textContent = text;
+        status.className = "wishes-status" + (type ? ` is-${type}` : "");
+    }
+
+    messageInput.addEventListener("input", () => {
+        counter.textContent = String(maxMessageLength - messageInput.value.length);
+    });
+
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const name = nameInput.value.trim();
+        const message = messageInput.value.trim();
+
+        if (!name || !message) {
+            showStatus("Mohon isi nama dan ucapan Anda.", "error");
+            (name ? messageInput : nameInput).focus();
+            return;
+        }
+
+        saveWish({ name, message, date: new Date().toISOString() });
+        renderWishes();
+
+        messageInput.value = "";
+        counter.textContent = String(maxMessageLength);
+        list.scrollTop = 0;
+        showStatus("Terima kasih, ucapan Anda sudah tersimpan.", "success");
+    });
+
+    renderWishes();
+}
+
+
+function setupShareButton() {
+    const button = document.getElementById("share-invitation");
+    const label = document.getElementById("share-label");
+
+    if (!button || !label) {
+        return;
+    }
+
+    const defaultLabel = label.textContent;
+
+    button.addEventListener("click", async () => {
+        const url = new URL(window.location.href);
+        url.search = "";
+        url.hash = "";
+
+        const shareUrl = url.toString();
+
+        try {
+            if (navigator.share) {
+                await navigator.share({
+                    title: document.title,
+                    text: WEDDING_CONFIG.closing.shareText,
+                    url: shareUrl
+                });
+                return;
+            }
+
+            await navigator.clipboard.writeText(shareUrl);
+            label.textContent = "Tautan tersalin";
+            window.setTimeout(() => { label.textContent = defaultLabel; }, 2200);
+        } catch (error) {
+            if (error && error.name === "AbortError") {
+                return;
+            }
+
+            window.prompt("Salin tautan undangan:", shareUrl);
+        }
+    });
 }
 
 
@@ -354,6 +640,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const heroTitle = document.getElementById("hero-title");
     const nav = document.getElementById("site-nav");
     const main = document.getElementById("main");
+    const footer = document.getElementById("site-footer");
     const menu = document.getElementById("menu");
 
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -362,6 +649,8 @@ document.addEventListener("DOMContentLoaded", () => {
     applyGuestName();
     renderStoryTimeline();
     startCountdown();
+    setupShareButton();
+    initWishes();
     startRevealOnScroll(reduceMotion);
 
     /* ---------- 1. Open invitation ---------- */
@@ -380,6 +669,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (main) {
             main.removeAttribute("inert");
+        }
+
+        if (footer) {
+            footer.removeAttribute("inert");
         }
 
         let finished = false;

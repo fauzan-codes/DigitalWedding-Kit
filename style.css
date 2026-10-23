@@ -8,6 +8,7 @@
     --terracotta-soft: #dd8a6c;
     --olive: #56634b;
     --olive-dark: #344337;
+    --forest: #263229;
     --charcoal: #292825;
     --muted: #787167;
     --line: rgba(63, 52, 41, .18);
@@ -948,6 +949,773 @@ body:not(.opened) .site-nav {
     .story-item-description {
         font-size: 0.84rem;
         line-height: 1.8;
+    }
+}
+
+
+
+/* =============== Judul besar (dipakai event, lokasi, ucapan, penutup) =============== */
+.event-title,
+.location-title,
+.wishes-title,
+.closing-title {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 400;
+    letter-spacing: -0.06em;
+    line-height: 1.02;
+    text-wrap: balance;
+}
+
+.event-title-accent,
+.location-title-accent,
+.wishes-title-accent,
+.closing-title-accent {
+    font-style: italic;
+}
+
+.btn-outline-terracotta {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    padding: .85rem 1.35rem;
+    border: 1px solid var(--terracotta);
+    border-radius: 2px;
+    background: transparent;
+    color: var(--terracotta-dark);
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .045em;
+    text-decoration: none;
+    transition: background .25s ease, color .25s ease, transform .25s ease;
+}
+
+.btn-outline-terracotta:hover,
+.btn-outline-terracotta:focus-visible {
+    background: var(--terracotta);
+    color: #fffaf4;
+    transform: translateY(-2px);
+}
+
+.btn-outline-ivory {
+    display: inline-flex;
+    align-items: center;
+    gap: .65rem;
+    padding: .85rem 1.35rem;
+    border: 1px solid rgba(248, 245, 239, .6);
+    border-radius: 2px;
+    background: transparent;
+    color: var(--ivory);
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .045em;
+    cursor: pointer;
+    transition: background .25s ease, color .25s ease, border-color .25s ease, transform .25s ease;
+}
+
+.btn-outline-ivory:hover,
+.btn-outline-ivory:focus-visible {
+    border-color: var(--ivory);
+    background: var(--ivory);
+    color: var(--forest);
+    transform: translateY(-2px);
+}
+
+.btn-outline-ivory:focus-visible {
+    outline: 2px solid var(--sand);
+    outline-offset: 3px;
+}
+
+
+
+/* =============== EVENT: HITUNG MUNDUR + INFO ACARA =============== */
+.section-event {
+    position: relative;
+    overflow: hidden;
+    padding: var(--section-space) 0;
+    background: var(--olive-dark);
+    color: var(--ivory);
+}
+
+/* pola kawung sangat tipis di latar, memudar ke tepi */
+.section-event::before {
+    position: absolute;
+    inset: 0;
+    background-image: var(--bg-pattern-center);
+    background-position: center;
+    background-size: 90px auto;
+    content: "";
+    opacity: .07;
+    pointer-events: none;
+    -webkit-mask-image: radial-gradient(ellipse at center, black 10%, transparent 75%);
+    mask-image: radial-gradient(ellipse at center, black 10%, transparent 75%);
+}
+
+.section-event > .container {
+    position: relative;
+}
+
+.event-header {
+    max-width: 44rem;
+    margin: 0 auto 3.5rem;
+    text-align: center;
+}
+
+.event-title {
+    color: var(--ivory);
+}
+
+.event-title-accent {
+    color: var(--terracotta-soft);
+}
+
+.event-subtitle {
+    max-width: 30rem;
+    margin: 1.25rem auto 0;
+    color: var(--sand);
+    font-size: .95rem;
+}
+
+
+.countdown-card {
+    max-width: 44rem;
+    margin: 0 auto 2.25rem;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    border: 1px solid rgba(248, 245, 239, .28);
+    background: rgba(248, 245, 239, .04);
+}
+
+.countdown-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid rgba(248, 245, 239, .22);
+    color: var(--sand);
+    font-size: .62rem;
+    font-weight: 700;
+    letter-spacing: .16em;
+}
+
+.countdown-ornament {
+    color: var(--terracotta-soft);
+    font-size: .95rem;
+}
+
+.countdown-grid {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: clamp(.5rem, 3vw, 2.2rem);
+    padding: 2.25rem 0 1.75rem;
+}
+
+.countdown-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .55rem;
+    min-width: 3rem;
+}
+
+.countdown-value {
+    color: var(--ivory);
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 8vw, 4.2rem);
+    font-weight: 400;
+    font-variant-numeric: lining-nums tabular-nums;
+    line-height: 1;
+}
+
+.countdown-unit-label {
+    color: var(--sand);
+    font-size: .62rem;
+    font-weight: 700;
+    letter-spacing: .2em;
+}
+
+.countdown-colon {
+    margin-top: clamp(.35rem, 1vw, .8rem);
+    color: var(--terracotta-soft);
+    font-family: var(--serif);
+    font-size: clamp(1.6rem, 5vw, 2.8rem);
+    line-height: 1;
+}
+
+.countdown-note {
+    margin: 0 auto;
+    color: var(--sand);
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-style: italic;
+    text-align: center;
+}
+
+
+.event-card {
+    max-width: 44rem;
+    margin: 0 auto;
+    border: 1px solid rgba(248, 245, 239, .28);
+    background: rgba(248, 245, 239, .08);
+}
+
+.event-card-head,
+.event-card-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.15rem clamp(1.5rem, 4vw, 2.5rem);
+    color: var(--sand);
+}
+
+.event-card-head {
+    border-bottom: 1px solid rgba(248, 245, 239, .22);
+}
+
+.event-card-label {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-style: italic;
+}
+
+.event-card-head i {
+    color: var(--terracotta-soft);
+    font-size: 1.25rem;
+}
+
+.event-card-body {
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.event-card-eyebrow {
+    margin-bottom: .75rem;
+    color: var(--sand);
+}
+
+.event-card-title {
+    margin: 0 0 1.75rem;
+    color: var(--ivory);
+    font-family: var(--serif);
+    font-size: clamp(1.9rem, 4vw, 2.6rem);
+    font-weight: 400;
+    letter-spacing: -.04em;
+    line-height: 1.1;
+}
+
+.event-details {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: .9rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.event-details li {
+    display: flex;
+    align-items: flex-start;
+    gap: .8rem;
+    color: var(--paper);
+    font-size: .92rem;
+}
+
+.event-details i {
+    margin-top: .2rem;
+    color: var(--terracotta-soft);
+}
+
+.event-card-foot {
+    border-top: 1px solid rgba(248, 245, 239, .22);
+    font-size: .62rem;
+    font-weight: 700;
+    letter-spacing: .14em;
+}
+
+.event-card-link {
+    color: var(--terracotta-soft);
+    font-size: 1.1rem;
+    line-height: 1;
+    text-decoration: none;
+    transition: color .25s ease, transform .25s ease;
+}
+
+.event-card-link:hover,
+.event-card-link:focus-visible {
+    color: var(--ivory);
+    transform: translate(2px, -2px);
+}
+
+.event-card-link:focus-visible {
+    outline-color: var(--sand);
+}
+
+@media (min-width: 576px) {
+    .event-details {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem 2rem;
+    }
+
+    .event-details li:last-child {
+        grid-column: 1 / -1;
+    }
+}
+
+
+
+/* =============== LOKASI =============== */
+.section-location {
+    padding: var(--section-space) 0;
+    background: var(--ivory);
+    color: var(--charcoal);
+}
+
+.location-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    align-items: center;
+    gap: clamp(3rem, 7vw, 7rem);
+}
+
+.location-title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+    color: var(--charcoal);
+    font-size: clamp(3rem, 5.2vw, 5rem);
+}
+
+.location-title-accent {
+    color: var(--terracotta);
+}
+
+.location-description {
+    max-width: 28rem;
+    margin: 0 0 2.25rem;
+    color: var(--muted);
+    font-size: .98rem;
+    line-height: 1.95;
+    text-wrap: pretty;
+}
+
+.location-address {
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--line);
+}
+
+.location-address-label {
+    margin: 0 0 .7rem;
+    color: var(--terracotta-dark);
+    font-size: .62rem;
+    font-weight: 700;
+    letter-spacing: .18em;
+}
+
+.location-venue {
+    margin: 0 0 .5rem;
+    font-family: var(--serif);
+    font-size: 1.75rem;
+    font-weight: 400;
+    letter-spacing: -.03em;
+    line-height: 1.2;
+}
+
+.location-street,
+.location-city {
+    margin: 0;
+    color: var(--muted);
+    font-size: .9rem;
+    line-height: 1.7;
+}
+
+.location-address .btn-outline-terracotta {
+    margin-top: 1.75rem;
+}
+
+.map-frame {
+    padding: 9px;
+    border: 1px solid var(--gold);
+    background: var(--paper);
+}
+
+.map-frame iframe {
+    display: block;
+    width: 100%;
+    min-height: 20rem;
+    aspect-ratio: 4 / 3;
+    border: 0;
+    filter: saturate(.8) sepia(.12);
+}
+
+.map-caption {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    margin: 1rem 0 0;
+    color: var(--muted);
+    font-size: .74rem;
+}
+
+
+
+/* =============== UCAPAN & DOA =============== */
+.section-wishes {
+    padding: var(--section-space) 0;
+    background: var(--paper);
+    color: var(--charcoal);
+}
+
+.wishes-header {
+    max-width: 44rem;
+    margin: 0 auto 3.5rem;
+    text-align: center;
+}
+
+.wishes-title {
+    color: var(--charcoal);
+}
+
+.wishes-title-accent {
+    color: var(--terracotta);
+}
+
+.wishes-subtitle {
+    max-width: 30rem;
+    margin: 1.25rem auto 0;
+    color: var(--muted);
+    font-size: .95rem;
+}
+
+.wishes-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    align-items: start;
+    gap: clamp(2.5rem, 6vw, 5.5rem);
+}
+
+.wishes-form {
+    padding: clamp(1.5rem, 4vw, 2.25rem);
+    border: 1px solid var(--line);
+    background: var(--ivory);
+}
+
+.wishes-field {
+    margin-bottom: 1.35rem;
+}
+
+.wishes-label {
+    display: block;
+    margin-bottom: .5rem;
+    color: var(--terracotta-dark);
+    font-size: .65rem;
+    font-weight: 700;
+    letter-spacing: .16em;
+}
+
+.wishes-input {
+    display: block;
+    width: 100%;
+    padding: .8rem .95rem;
+    border: 1px solid var(--sand-dark);
+    border-radius: 2px;
+    background: #fffdf9;
+    color: var(--charcoal);
+    font-size: .95rem;
+    transition: border-color .25s ease, box-shadow .25s ease;
+}
+
+textarea.wishes-input {
+    min-height: 8.5rem;
+    resize: vertical;
+}
+
+.wishes-input:focus {
+    border-color: var(--terracotta);
+    box-shadow: 0 0 0 3px rgba(184, 93, 60, .14);
+    outline: none;
+}
+
+.wishes-counter {
+    margin: .4rem 0 0;
+    color: var(--muted);
+    font-size: .72rem;
+}
+
+/* kolom jebakan bot: disembunyikan dari pengguna */
+.wishes-trap {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+.wishes-submit:disabled {
+    opacity: .65;
+    cursor: wait;
+    transform: none;
+}
+
+.wishes-status {
+    min-height: 1.5em;
+    margin: 1rem 0 0;
+    font-size: .82rem;
+}
+
+.wishes-status.is-success {
+    color: var(--olive);
+}
+
+.wishes-status.is-error {
+    color: var(--terracotta-dark);
+}
+
+.wishes-note {
+    margin: .25rem 0 0;
+    color: var(--muted);
+    font-size: .72rem;
+}
+
+.wishes-count {
+    margin-bottom: 1.1rem;
+}
+
+.wishes-list {
+    max-height: 32rem;
+    margin: 0;
+    padding: 0 .9rem 0 0;
+    overflow-y: auto;
+    list-style: none;
+    scrollbar-color: var(--sand-dark) transparent;
+    scrollbar-width: thin;
+}
+
+.wish-item {
+    padding: 1.35rem 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.wish-item:first-child {
+    padding-top: 0;
+}
+
+.wish-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: .45rem;
+}
+
+.wish-name {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: -.02em;
+}
+
+.wish-time {
+    color: var(--muted);
+    font-size: .72rem;
+    white-space: nowrap;
+}
+
+.wish-message {
+    margin: 0;
+    color: var(--charcoal);
+    font-size: .92rem;
+    line-height: 1.85;
+    overflow-wrap: anywhere;
+    white-space: pre-line;
+}
+
+.wishes-empty {
+    padding: .5rem 0;
+    color: var(--muted);
+    font-family: var(--serif);
+    font-style: italic;
+}
+
+
+
+/* =============== PENUTUP + FOOTER =============== */
+.section-closing {
+    position: relative;
+    overflow: hidden;
+    padding: calc(var(--section-space) * 1.1) 0 calc(var(--section-space) * .9);
+    background: var(--forest);
+    color: var(--ivory);
+    text-align: center;
+}
+
+.closing-ornament {
+    position: absolute;
+    width: clamp(120px, 16vw, 230px);
+    aspect-ratio: 1;
+    opacity: .5;
+    pointer-events: none;
+    background-image: var(--ornament-corner);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.closing-ornament--bl {
+    bottom: 0;
+    left: 0;
+    transform: scaleY(-1);
+}
+
+.closing-ornament--br {
+    right: 0;
+    bottom: 0;
+    transform: rotate(180deg);
+}
+
+.closing-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 46rem;
+}
+
+.closing-symbol {
+    display: block;
+    margin-bottom: 2rem;
+    color: var(--terracotta-soft);
+    font-size: 1.4rem;
+}
+
+.closing-eyebrow {
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    color: var(--terracotta-soft);
+}
+
+.closing-title {
+    margin-bottom: 1.75rem;
+    color: var(--ivory);
+    font-size: clamp(2.8rem, 7vw, 5.4rem);
+}
+
+.closing-title span {
+    display: block;
+}
+
+.closing-title-accent {
+    color: var(--terracotta-soft);
+}
+
+.closing-text {
+    max-width: 32rem;
+    margin: 0 auto 3rem;
+    color: var(--sand);
+    font-size: .95rem;
+}
+
+.closing-names {
+    margin: 0 auto .6rem;
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4.5vw, 2.8rem);
+    letter-spacing: -.04em;
+    line-height: 1.15;
+}
+
+.closing-ampersand {
+    color: var(--terracotta-soft);
+    font-size: .8em;
+    font-style: italic;
+}
+
+.closing-date {
+    margin: 0 auto 2.25rem;
+    color: var(--sand);
+    font-size: .68rem;
+    font-weight: 700;
+    letter-spacing: .18em;
+}
+
+.closing-date-separator {
+    margin-inline: .45rem;
+    color: var(--terracotta-soft);
+}
+
+.site-footer {
+    background: var(--forest);
+    color: var(--sand);
+}
+
+.footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.4rem 0 1.6rem;
+    border-top: 1px solid rgba(248, 245, 239, .18);
+    font-size: .64rem;
+    font-weight: 700;
+    letter-spacing: .16em;
+}
+
+.footer-top {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    color: var(--sand);
+    text-decoration: none;
+    transition: color .25s ease;
+}
+
+.footer-top:hover,
+.footer-top:focus-visible {
+    color: var(--ivory);
+}
+
+.footer-top:focus-visible {
+    outline-color: var(--sand);
+}
+
+
+@media (max-width: 991.98px) {
+    .location-layout,
+    .wishes-layout {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 3rem;
+    }
+
+    .location-title {
+        font-size: clamp(3rem, 8vw, 4.6rem);
+    }
+}
+
+@media (max-width: 575.98px) {
+    .event-header,
+    .wishes-header {
+        margin-bottom: 2.5rem;
+    }
+
+    .countdown-head {
+        font-size: .58rem;
+        letter-spacing: .1em;
+    }
+
+    .countdown-unit {
+        min-width: 2.6rem;
+    }
+
+    .event-card-foot {
+        flex-wrap: wrap;
+    }
+
+    .wishes-list {
+        max-height: 28rem;
+    }
+
+    .footer-inner {
+        flex-direction: column;
+        gap: .75rem;
+        text-align: center;
     }
 }
 
