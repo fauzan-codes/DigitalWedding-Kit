@@ -20,10 +20,10 @@ Proyek ini dibangun sepenuhnya menggunakan teknologi *front-end* dasar tanpa ket
 ## 🚀 Deployment & Hosting
 Web statis ini telah di-*deploy* secara publik menggunakan **Cloudflare Pages**. Platform Cloudflare dipilih karena menyediakan distribusi CDN yang sangat cepat, aman, dan sangat cocok untuk *hosting* proyek *front-end* murni secara efisien.
 
-🔗 **Live Demo:** [-]
+🔗 **Live Demo:** https://wedding-kit-fauzan.azharfauzan472.workers.dev/
 
 ## 📂 Cara Menjalankan Secara Lokal
 Jika ingin menjalankan atau memodifikasi kode secara lokal:
-1. *Clone* repositori ini: `git clone [URL-Repository-Kamu]`
+1. *Clone* repositori ini: `git clone https://github.com/fauzan-codes/DigitalWedding-Kit.git`
 2. Masuk ke direktori proyek.
 3. Buka file `index.html` langsung melalui *browser* pilihanmu, atau gunakan fitur **Live Server** di teks editor seperti VS Code untuk pengalaman *development* yang lebih optimal.

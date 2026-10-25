@@ -312,13 +312,11 @@ function applyWeddingConfig() {
 function applyPartnerPhotos() {
     document.querySelectorAll("[data-config-photo]").forEach((element) => {
         const partner = getConfigValue(element.dataset.configPhoto);
-
-        if (!partner) {
-            return;
-        }
+        if (!partner) return;
 
         if (partner.photo) {
-            element.style.setProperty("--img", `url("${encodeURI(partner.photo)}")`);
+            const photoUrl = new URL(partner.photo, document.baseURI).href;
+            element.style.setProperty("--img", `url("${photoUrl}")`);
         }
 
         element.setAttribute("aria-label", `Foto ${partner.nickname}`);
