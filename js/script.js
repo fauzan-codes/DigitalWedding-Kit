@@ -1,17 +1,17 @@
 const WEDDING_CONFIG = {
     couple: {
         partnerOne: {
-            nickname: "Nama1",
-            fullName: "Nama Lengkap Pasangan Pertama",
-            parents: "Putra dari Bapak dan Ibu ...",
-            photo: "src/partner-one.jpg"
+            nickname: "Raffi",
+            fullName: "Raffi Ahmad",
+            parents: "Putra dari Bapak Munawar Ahmad dan Ibu Amy Qanita",
+            photo: "src/Raffi Ahmad.png"
         },
 
         partnerTwo: {
-            nickname: "Nama2",
-            fullName: "Nama Lengkap Pasangan Kedua",
-            parents: "Putri dari Bapak dan Ibu ...",
-            photo: "src/partner-two.jpg"
+            nickname: "Nagita",
+            fullName: "Nagita Slavina",
+            parents: "Putri dari Bapak Gideon Tengker dan Ibu Rieta Amilia Beta",
+            photo: "src/Nagita Slavina.png"
         }
     },
 
@@ -37,24 +37,24 @@ const WEDDING_CONFIG = {
 
         chapters: [
             {
-                year: 2018,
+                year: 2004,
                 title: "Pertemuan Pertama",
-                description: "Di sebuah acara kampus, obrolan singkat berubah menjadi awal dari cerita yang tak pernah kami rencanakan."
+                description: "Dipertemukan di depan kamera saat membintangi sinetron remaja yang sama, tanpa pernah menyangka itu adalah awal dari takdir kami."
             },
             {
-                year: 2019,
+                year: 2013,
                 title: "Mulai Mengenal",
-                description: "Kami belajar mengenal hal-hal kecil, bertumbuh bersama, dan menemukan nyaman dalam kesederhanaan."
+                description: "Setelah bertahun-tahun menjalani hidup masing-masing, obrolan singkat yang tak sengaja membawa kami belajar mengenal kenyamanan baru."
             },
             {
-                year: 2022,
+                year: 2026,
                 title: "Satu Kesepakatan",
-                description: "Dengan restu keluarga, kami memilih untuk melangkah lebih jauh dan menjaga cerita ini bersama-sama."
+                description: "Tanpa proses pacaran yang lama, dengan restu penuh dari kedua keluarga, kami mantap memilih untuk melangkah ke pelaminan."
             },
             {
                 year: 2026,
                 title: "Hari yang Dinanti",
-                description: "Sebuah bab baru dimulai. Kali ini, kami ingin merayakannya bersama orang-orang terkasih."
+                description: "Sebuah bab baru resmi dimulai di Jakarta dan Bali. Janji suci terucap untuk merayakan selamanya bersama orang-orang terkasih."
             }
         ]
     },
@@ -68,7 +68,9 @@ const WEDDING_CONFIG = {
         cardLabel: "Hari Pernikahan",
         eyebrow: "AKAD NIKAH",
         cardTitle: "Awal Sebuah Janji",
-        dressCode: "BUSANA: FORMAL / TRADISIONAL"
+        dressCode: "BUSANA: FORMAL / TRADISIONAL",
+        dressEyebrow: "BUSANA NUSANTARA",
+        dressNote: "Kami akan senang bila Anda mengenakan batik, kebaya, atau busana adat dari daerah Anda masing-masing."
     },
 
     location: {
@@ -89,31 +91,36 @@ const WEDDING_CONFIG = {
         maxMessageLength: 280,
         samples: [
             {
-                name: "Keluarga Besar",
-                message: "Selamat menempuh hidup baru. Semoga selalu dilimpahi kebahagiaan dan keberkahan.",
-                date: "2026-10-12"
+                name: "Ardiansyah Dheva",
+                message: "Semoga menjadi keluarga yang sakinah, mawaddah, warahmah.",
+                // date: "2026-10-24"
             },
             {
-                name: "Teman Kuliah",
+                name: "Galang Paling Gacor",
                 message: "Akhirnya! Bahagia selalu untuk kalian berdua.",
-                date: "2026-10-11"
+                // date: "2026-10-19"
             },
             {
-                name: "Sahabat Lama",
-                message: "Semoga cinta kalian terus tumbuh dan menjadi rumah yang hangat untuk keluarga kecil kalian.",
-                date: "2026-10-09"
+                name: "Mamah Agnes",
+                message: "Akhirnya sah juga! Selamat ya...",
+                // date: "2026-10-05"
             },
             {
-                name: "Rekan Kerja",
+                name: "your best friend",
                 message: "Selamat ya! Sampai jumpa di hari bahagia kalian.",
-                date: "2026-10-08"
+                // date: "2026-09-30"
             },
             {
                 name: "Tante Rina",
                 message: "Doa terbaik untuk kalian berdua. Semoga selalu rukun, saling menyayangi, dan diberkahi sepanjang hidup.",
-                date: "2026-10-06"
+                // date: "2026-09-06"
             }
         ]
+    },
+
+    nusantara: {
+        aksaraWelcome: "ꦱꦸꦒꦼꦁꦫꦮꦸꦃ",
+        aksaraThanks: "ꦩꦠꦸꦂꦤꦸꦮꦸꦤ꧀"
     },
 
     closing: {
@@ -121,7 +128,7 @@ const WEDDING_CONFIG = {
         titleLineOne: "Terima kasih telah",
         titleLineTwo: "menjadi bagian cerita.",
         text: "Merupakan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.",
-        credit: "DIBUAT DENGAN CINTA & RASA",
+        // credit: "DIBUAT DENGAN CINTA & RASA",
         shareText: "Kami mengundang Anda ke hari pernikahan kami."
     },
 
@@ -135,13 +142,13 @@ const WEDDING_CONFIG = {
     },
 
     venue: {
-        building: "Nama Gedung Pernikahan",
-        street: "Jalan Contoh Nomor 123",
-        district: "",
-        city: "Yogyakarta",
-        province: "DI Yogyakarta",
+        building: "Hotel The Ritz-Carlton",
+        street: " Jl. Jenderal Sudirman Kav. 52-53",
+        district: "Kebayoran Baru",
+        city: "Jakarta Selatan",
+        province: "DKI Jakarta",
         country: "Indonesia",
-        postalCode: "",
+        postalCode: "12190",
 
         mapEmbedUrl: ""
     }
