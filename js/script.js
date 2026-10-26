@@ -93,27 +93,27 @@ const WEDDING_CONFIG = {
             {
                 name: "Ardiansyah Dheva",
                 message: "Semoga menjadi keluarga yang sakinah, mawaddah, warahmah.",
-                // date: "2026-10-24"
+                date: "2026-10-24"
             },
             {
                 name: "Galang Paling Gacor",
                 message: "Akhirnya! Bahagia selalu untuk kalian berdua.",
-                // date: "2026-10-19"
+                date: "2026-10-19"
             },
             {
                 name: "Mamah Agnes",
                 message: "Akhirnya sah juga! Selamat ya...",
-                // date: "2026-10-05"
+                date: "2026-10-05"
             },
             {
                 name: "your best friend",
                 message: "Selamat ya! Sampai jumpa di hari bahagia kalian.",
-                // date: "2026-09-30"
+                date: "2026-09-30"
             },
             {
                 name: "Tante Rina",
                 message: "Doa terbaik untuk kalian berdua. Semoga selalu rukun, saling menyayangi, dan diberkahi sepanjang hidup.",
-                // date: "2026-09-06"
+                date: "2026-09-06"
             }
         ]
     },
@@ -455,11 +455,6 @@ function startCountdown() {
 }
 
 
-/* =========================================================
-   UCAPAN & DOA
-   - Ucapan baru disimpan di localStorage (sebagai JSON) dan tampil di atas.
-   - Di bawahnya selalu ada ucapan contoh dari WEDDING_CONFIG.wishes.samples.
-   ========================================================= */
 let savedWishes = readSavedWishes();
 
 function readSavedWishes() {
@@ -477,7 +472,6 @@ function saveWish(wish) {
     try {
         window.localStorage.setItem(WEDDING_CONFIG.wishes.storageKey, JSON.stringify(savedWishes));
     } catch (error) {
-        // localStorage tidak tersedia: ucapan tetap tampil sampai halaman dimuat ulang
     }
 }
 
@@ -709,14 +703,12 @@ document.addEventListener("DOMContentLoaded", () => {
         openButton.focus({ preventScroll: true });
     }
 
-    /* ---------- 2. Navigation appearance on scroll ---------- */
     if (nav) {
         const updateNavigation = () => {nav.classList.toggle("scrolled", window.scrollY > 40);};
         window.addEventListener("scroll", updateNavigation, {passive: true});
         updateNavigation();
     }
 
-    /* ---------- 3. Smooth scrolling and offcanvas menu ---------- */
     const offcanvas = (window.bootstrap?.Offcanvas && menu)? window.bootstrap.Offcanvas.getOrCreateInstance(menu): null;
 
     document.querySelectorAll("[data-scroll]").forEach((link) => {
